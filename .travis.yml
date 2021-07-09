@@ -18,3 +18,15 @@ after_success:
   - docker push gravboy/multi-nginx
   - docker push gravboy/multi-server
   - docker push gravboy/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "multi-docker3"
+  env: "Multidocker3-env"
+  bucket_name: "elasticbeanstalk-us-east-2-029015861344"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
